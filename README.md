@@ -5,3 +5,7 @@ Flip is a project designed to provide an easy to use hand movement tracking soft
 Semester Goals:
 
 This semester we have a few measurable goals. We first want to research and become comfortable with the OpenCV and NumPy libraries that Python provides. Utilizing that research,  we want to accurately track user hand movement and controls, at minimum for basic hand movements such as swiping left or right. Through this, we want users to be able to seamlessly flip through ebooks/pdfs on their devices. Finally, we want to package whatever capability our movement tracker has into a Chrome Extension for ease of access.
+
+Stuart Powers- powers2@rpi.edu
+Cole Augusta- augusc2@rpi.edu
+Ansh Revankar- revana@rpi.edu

@@ -4,7 +4,7 @@
   "description": "Hand Gesture detection for pdfs and ebooks",
   "version": "1.0",
   "action": {
-    "default_popup": "hello.html",
+    "default_popup": "test.html",
     "default_icon": "flip.png"
   }
 }

@@ -28,7 +28,7 @@ if __name__ == "__main__":
 
         #if there are results, if they find some sort of hand.
         if results.multi_hand_landmarks:
-            Lmlist = []
+            cordlist = []
             #for every "point" of the hand in the results
             for handLms in results.multi_hand_landmarks:
                 #for every point, there is an id and a location of the point of the hand. this loops through all of them. 
@@ -36,8 +36,10 @@ if __name__ == "__main__":
                     #print(id,lm)
                     h, w, c = img.shape
                     cx, cy = int(lm.x *w), int(lm.y*h)
+
+                    # store circle cords
                     cords = (cx, cy)
-                    Lmlist.append(cords)
+                    cordlist.append(cords)
 
                     #if id ==0:
                     #makes a small circle at each "point" of the hand
@@ -45,13 +47,16 @@ if __name__ == "__main__":
                 #actually draws the circle on the image.
                 mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
 
+            # creates base options for GestureRecognizer obj
             base_options = python.BaseOptions(model_asset_path='gesture_recognizer.task')
             options = vision.GestureRecognizerOptions(base_options=base_options)
-            #recognizer = vision.GestureRecognizer.create_from_options(options)
-            #result = recognizer.recognize(img)
 
-            for i in range(len(Lmlist)):
-                print(Lmlist[i][0], Lmlist[i][1])
+            # creates GestureRecognizer obj, gets res
+            # recognizer = vision.GestureRecognizer.create_from_options(options)
+            # result = recognizer.recognize(img)    
+        
+            for i in range(len(cordlist)):
+                print(f"x: {cordlist[i][0]} y: {cordlist[i][1]}")
 
         #gets FPS
         cTime = time.time()

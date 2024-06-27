@@ -24,7 +24,7 @@ if __name__ == "__main__":
     pguiSize = pgui.size()
     pgui.moveTo(math.floor(.50 * pguiSize[0]), math.floor(.80 * pguiSize[1]))
     status = ""
-    scrollAmt = -10
+    scrollAmt = 0
 
 
     while True:
@@ -70,10 +70,27 @@ if __name__ == "__main__":
 
             for i in range(len(cordlist)):
                 # print(f"x: {cordlist[i][0]} y: {cordlist[i][1]}")
+
+                # hand is in the upper 1/3 (ish) of the screen scroll
+                # up, if continuously holding in one direction 
+                # scroll speeds up
                 if cordlist[i][1] > 400:
-                    status = "scrolling"
+                    status = "scrolling down"
+                    print(status)
+                    if scrollAmt > 0:
+                        scrollAmt = 0
                     pgui.scroll(scrollAmt)
-                    scrollAmt -= 5
+                    scrollAmt -= 10
+                    status = "wait"
+                # hand is in the lower 1/3 (ish) of the screen scroll
+                # down
+                if cordlist[i][1] < 200:
+                    status = "scrolling up"
+                    print(status)
+                    if scrollAmt < 0:
+                        scrollAmt = 0
+                    pgui.scroll(scrollAmt)
+                    scrollAmt += 10
                     status = "wait"
 
 

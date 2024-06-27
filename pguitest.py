@@ -19,7 +19,13 @@ if __name__ == "__main__":
     pTime = 0
     cTime = 0
 
-    status = [""]
+    # get size of screen for pyautogui
+    # and move cursor to bottom center
+    pguiSize = pgui.size()
+    pgui.moveTo(math.floor(.50 * pguiSize[0]), math.floor(.80 * pguiSize[1]))
+    status = ""
+    scrollAmt = -10
+
 
     while True:
         #reads the image
@@ -58,16 +64,17 @@ if __name__ == "__main__":
 
             # creates GestureRecognizer obj, gets res
             # recognizer = vision.GestureRecognizer.create_from_options(options)
-            # result = recognizer.recognize(img)    
-        
-            pguiSize = pgui.size()
-            pgui.moveTo(math.floor(.50 * pguiSize[0]), math.floor(.80 * pguiSize[1]))
+            # result = recognizer.recognize(img)
+
             status = "wait"
+
             for i in range(len(cordlist)):
                 # print(f"x: {cordlist[i][0]} y: {cordlist[i][1]}")
                 if cordlist[i][1] > 400:
                     status = "scrolling"
-                    pgui.scroll(-20)
+                    pgui.scroll(scrollAmt)
+                    scrollAmt -= 5
+                    status = "wait"
 
 
         #gets FPS

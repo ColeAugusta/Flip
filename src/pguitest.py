@@ -35,6 +35,7 @@ if __name__ == "__main__":
         #processes each image
         results = hands.process(imgRGB)
         #print(results.multi_hand_landmarks)
+        h, w, c = img.shape
 
         #if there are results, if they find some sort of hand.
         if results.multi_hand_landmarks:
@@ -43,24 +44,20 @@ if __name__ == "__main__":
             for handLms in results.multi_hand_landmarks:
                 #for every point, there is an id and a location of the point of the hand. this loops through all of them. 
                 for id, lm in enumerate(handLms.landmark):
-                    #print(id,lm)
-                    h, w, c = img.shape
-                    print(h, w, c)
-                    cx, cy = int(lm.x *w), int(lm.y*h)
+                    
+                    if id == 8:
+                        cx, cy = int(lm.x *w), int(lm.y*h)
 
-                    # store circle cords
-                    cords = (cx, cy)
-                    cordlist.append(cords)
+                        # store circle cords
+                        cords = (cx, cy)
+                        cordlist.append(cords)
 
-                    #if id ==0:
-                    #makes a small circle at each "point" of the hand
-                    cv2.circle(img, (cx,cy), 3, (255,0,255), cv2.FILLED)
+                        #if id ==0:
+                        #makes a small circle at each "point" of the hand
+                        cv2.circle(img, (cx,cy), 3, (255,0,255), cv2.FILLED)
                 #actually draws the circle on the image.
                 mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
 
-            # creates base options for GestureRecognizer obj
-            base_options = python.BaseOptions(model_asset_path='gesture_recognizer.task')
-            options = vision.GestureRecognizerOptions(base_options=base_options)
 
             # creates GestureRecognizer obj, gets res
             # recognizer = vision.GestureRecognizer.create_from_options(options)
@@ -74,24 +71,24 @@ if __name__ == "__main__":
                 # hand is in the upper 1/3 (ish) of the screen scroll
                 # up, if continuously holding in one direction 
                 # scroll speeds up
-                if cordlist[i][1] > 400:
-                    status = "scrolling down"
-                    print(status)
-                    if scrollAmt > 0:
-                        scrollAmt = 0
-                    pgui.scroll(scrollAmt)
-                    scrollAmt -= 10
-                    status = "wait"
-                # hand is in the lower 1/3 (ish) of the screen scroll
-                # down
                 if cordlist[i][1] < 200:
                     status = "scrolling up"
-                    print(status)
                     if scrollAmt < 0:
                         scrollAmt = 0
                     pgui.scroll(scrollAmt)
                     scrollAmt += 10
                     status = "wait"
+                # hand is in the lower 1/3 (ish) of the screen scroll
+                # down
+                if cordlist[i][1] > 400:
+                    status = "scrolling down"
+                    if scrollAmt > 0:
+                        scrollAmt = 0
+                    pgui.scroll(scrollAmt)
+                    scrollAmt -= 10
+                    status = "wait"
+
+
 
 
         #gets FPS

@@ -5,6 +5,7 @@ import mediapipe as mp
 import pyautogui as pgui
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
+from GestureLogger import GestureLogger
 
 
 if __name__ == "__main__":
@@ -58,13 +59,9 @@ if __name__ == "__main__":
                 #actually draws the circle on the image.
                 mpDraw.draw_landmarks(img, handLms, mpHands.HAND_CONNECTIONS)
 
-
-            # creates GestureRecognizer obj, gets res
-            # recognizer = vision.GestureRecognizer.create_from_options(options)
-            # result = recognizer.recognize(img)
-
+            # for all lm cords, determine status of
+            # hand and scroll accordingly
             status = "wait"
-
             for i in range(len(cordlist)):
                 # print(f"x: {cordlist[i][0]} y: {cordlist[i][1]}")
 
@@ -87,8 +84,6 @@ if __name__ == "__main__":
                     pgui.scroll(scrollAmt)
                     scrollAmt -= 10
                     status = "wait"
-
-
 
 
         #gets FPS

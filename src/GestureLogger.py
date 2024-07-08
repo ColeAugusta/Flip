@@ -1,6 +1,7 @@
 from mediapipe.tasks.python import vision
 from mediapipe.tasks import python
 import mediapipe as mp
+import numpy as np
 
 # GestureLogger class to handle using the mediapipe
 # gesture recognition data and its related functions
@@ -21,5 +22,10 @@ class GestureLogger:
         )
         #init recognizer obj
         self.recognizer = vision.GestureRecognizer.create_from_options(options)
-        
-        
+
+    
+    def detect(self, image: np.NDArray[np.uint8]) -> None:
+        image = mp.Image(
+            image_format = mp.ImageFormat.SRGB,
+            data = image
+        )

@@ -35,7 +35,12 @@ if __name__ == "__main__":
         imgRGB = cv2.cvtColor(img, cv2.COLOR_BGR2RGB)
         #processes each image
         results = hands.process(imgRGB)
-        #print(results.multi_hand_landmarks)
+
+        #processes RGB image with gesture logger model
+        logger = GestureLogger(video_mode=False)
+        logger.detect(imgRGB) 
+
+
         h, w, c = img.shape
 
         #if there are results, if they find some sort of hand.
@@ -98,5 +103,6 @@ if __name__ == "__main__":
         if cv2.waitKey(1) & 0xFF == ord('q'):#close using q
             break
 
+    # end capture and destroy window
     cap.release()
     cv2.destroyAllWindows()

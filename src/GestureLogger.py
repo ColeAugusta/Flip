@@ -24,8 +24,19 @@ class GestureLogger:
         self.recognizer = vision.GestureRecognizer.create_from_options(options)
 
     
-    def detect(self, image: np.NDArray[np.uint8]) -> None:
+    def detect(self, image: np.ndarray[np.uint8]) -> None:
+        #creates image in mp format, calls recognizer
         image = mp.Image(
             image_format = mp.ImageFormat.SRGB,
             data = image
         )
+        recognizer_result = self.recognizer.recognize(image)
+
+        #print top result from recognizer obj
+        for i, gesture in enumerate(recognizer_result.gestures):
+            print("Gesture result: ", gesture[0].category_name)
+        
+        #get hand landmarks if hand found
+        if recognizer_result.hand_landmarks:
+            hand_lms = recognizer_result.hand_landmarks
+            print("landmark: ", str(hand_lms))

@@ -13,12 +13,15 @@ class GestureLogger:
         self.video_mode = video_mode
 
         #init options for gesture recognizer obj
+        model_file = open("models/gesture_recognizer.task", "rb")
+        model_data = model_file.read()
+        model_file.close()
         base_options = python.BaseOptions(
-            model_asset_path = 'gesture_recognizer.task'
+            model_asset_buffer=model_data
         )
         options = vision.GestureRecognizerOptions(
             base_options = base_options,
-            running_mode = mp.tasks.vision.RunningMode.VIDEO
+            running_mode = mp.tasks.vision.RunningMode.IMAGE
         )
         #init recognizer obj
         self.recognizer = vision.GestureRecognizer.create_from_options(options)
@@ -35,8 +38,3 @@ class GestureLogger:
         #print top result from recognizer obj
         for i, gesture in enumerate(recognizer_result.gestures):
             print("Gesture result: ", gesture[0].category_name)
-        
-        #get hand landmarks if hand found
-        if recognizer_result.hand_landmarks:
-            hand_lms = recognizer_result.hand_landmarks
-            print("landmark: ", str(hand_lms))

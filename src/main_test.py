@@ -6,7 +6,7 @@ import pyautogui as pgui
 from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from GestureLogger import GestureLogger
-
+from tkinter import *
 
 if __name__ == "__main__":
     cap = cv2.VideoCapture(0)
@@ -19,6 +19,22 @@ if __name__ == "__main__":
 
     pTime = 0
     cTime = 0
+
+    # create window to start Flip app
+    window = Tk()
+    window.title("Flip")
+    window.iconbitmap("logo.ico")
+    window.geometry("450x450")
+
+    # fill window with widgets
+    frame = Frame(window)
+    frame.pack()
+    label = Label(frame, text = "Flip", width = "10", height = "10")
+    label.pack()
+    button = Button(frame, text = "Run")
+    button.pack()
+
+    window.mainloop()
 
     # get size of screen for pyautogui
     # and move cursor to bottom center

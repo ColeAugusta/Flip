@@ -1,14 +1,15 @@
-import cv2
-import time
-import math
-import mediapipe as mp
-import pyautogui as pgui
-from mediapipe.tasks import python
 from mediapipe.tasks.python import vision
 from GestureLogger import GestureLogger
+from mediapipe.tasks import python
 from tkinter import *
+import pyautogui as pgui
+import mediapipe as mp
+import time
+import math
+import cv2
 
-if __name__ == "__main__":
+def runFlip():
+
     cap = cv2.VideoCapture(0)
     mpHands = mp.solutions.hands
     hands = mpHands.Hands(static_image_mode=False,
@@ -16,34 +17,9 @@ if __name__ == "__main__":
                         min_detection_confidence=0.5,
                         min_tracking_confidence=0.5)
     mpDraw = mp.solutions.drawing_utils
-
     pTime = 0
     cTime = 0
-
-    # create window to start Flip app
-    window = Tk()
-    window.title("Flip")
-    window.iconbitmap("logo.ico")
-    window.geometry("450x450")
-
-    # fill window with widgets
-    frame = Frame(window)
-    frame.pack()
-    label = Label(frame, text = "Flip", width = "10", height = "10")
-    label.pack()
-    button = Button(frame, text = "Run")
-    button.pack()
-
-    window.mainloop()
-
-    # get size of screen for pyautogui
-    # and move cursor to bottom center
-    pguiSize = pgui.size()
-    pgui.moveTo(math.floor(.50 * pguiSize[0]), math.floor(.80 * pguiSize[1]))
-    status = ""
-    scrollAmt = 0
-
-
+    
     while True:
         #reads the image
         success, img = cap.read()
@@ -122,3 +98,31 @@ if __name__ == "__main__":
     # end capture and destroy window
     cap.release()
     cv2.destroyAllWindows()
+
+
+
+if __name__ == "__main__":
+
+
+    # create window to start Flip app
+    window = Tk()
+    window.title("Flip")
+    window.iconbitmap("logo.ico")
+    window.geometry("450x450")
+
+    # fill window with widgets
+    frame = Frame(window)
+    frame.pack()
+    label = Label(frame, text = "Flip", width = "10", height = "10")
+    label.pack()
+    button = Button(frame, text = "Run", command = runFlip)
+    button.pack()
+
+    window.mainloop()
+
+    # get size of screen for pyautogui
+    # and move cursor to bottom center
+    pguiSize = pgui.size()
+    pgui.moveTo(math.floor(.50 * pguiSize[0]), math.floor(.80 * pguiSize[1]))
+    status = ""
+    scrollAmt = 0

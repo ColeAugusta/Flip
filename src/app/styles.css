@@ -1,0 +1,21 @@
+* {
+    letter-spacing: 0.5px;
+}
+
+body, html {
+    background-color: bisque;
+}
+
+nav {
+    text-align: center;
+}
+
+nav ul {
+    list-style-type: none;
+    display: inline;
+    font-style: bold;
+}
+
+nav ul li {
+    display: inline;
+}

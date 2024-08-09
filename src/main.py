@@ -116,7 +116,7 @@ if __name__ == "__main__":
     window = Tk()
     window.title("Flip")
     window.iconbitmap("logo.ico")
-    window.geometry("450x450")
+    window.geometry("600x600")
 
     # fill window with widgets
     frame = Frame(window)

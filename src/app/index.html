@@ -1,27 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Flip - Download Now!</title>
-    <link rel="icon" type="image/x-icon" href="flipjustlogo.png">
+    <link rel="icon" type="image/png" href="flipjustlogo.png">
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+
+    <!-- Font Awesome for icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" integrity="sha512-Fo3rlrZj/k7ujTTXRLJmEDqY9r9A9uwjTcU8nE5gkd6+ZRnj6xI2UjM+nHT5NkmNczIhUMCjUMR7xqWkgW8Pkw==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+
+    <!-- External CSS -->
     <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <nav>
-    <ul>
-      <li><a href="holder.exe">Download</a></li>
-      <li><a href="#about">About</a></li>
-    </ul>
-  </nav>
-  <img src="flipjustlogo.png">
-  <h1>Welcome to Flip!</h1>
-  <h2>Download</h2>
-  <p style="font-style: italic;">Flip runs on Windows, Mac, and Linux, and requires a functioning webcam to use</p>
-  <a href="holder.exe" style="color: black; text-align: center; display: block;">Download</a>
-  <h2>About</h2>
-  <p>Vision:</p>
-  <p>Flip is a project designed to provide an easy to use hand movement tracking software for reading ebooks or pdfs on devices with a camera. Other hand detection software can be unreliable and frustrating to use, so Flip plans to create something that users can consistently trust. Flip will allow for users to “swipe” their hands when pointed at a camera connected to their device, and have the device respond accordingly by swiping to the next page. We plan to package our product in a Chrome extension for free, open source, public use. The project will be created using Python with the OpenCV and NumPy libraries for development of our hand movement tracker, and possibly JavaScript/PyScript for the chrome extension development.</p>
-  <p>Semester Goals:</p>
-  <p>This semester we have a few measurable goals. We first want to research and become comfortable with the OpenCV and NumPy libraries that Python provides. Utilizing that research, we want to accurately track user hand movement and controls, at minimum for basic hand movements such as swiping left or right. Through this, we want users to be able to seamlessly flip through ebooks/pdfs on their devices. Finally, we want to package whatever capability our movement tracker has into a Chrome Extension for ease of access.</p>
-  <p>Stuart Powers- powers2@rpi.edu Cole Augusta- augusc2@rpi.edu Ansh Revankar- revana@rpi.edu</p>
+    <header>
+        <nav>
+            <div class="logo">
+                <img src="flipjustlogo.png" alt="Flip Logo">
+                <span>Flip</span>
+            </div>
+            <ul>
+                <li><a href="holder.exe"><i class="fas fa-download"></i> Download</a></li>
+                <li><a href="#about"><i class="fas fa-info-circle"></i> About</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="hero">
+            <div class="hero-content">
+                <h1>Welcome to Flip!</h1>
+                <p class="subtitle">Seamless hand movement tracking for your reading experience.</p>
+                <a href="holder.exe" class="download-button">Download Now</a>
+            </div>
+            <div class="hero-image">
+                <img src="flipjustlogo.png" alt="Flip Illustration">
+            </div>
+        </section>
+
+        <section id="about" class="about-section">
+            <h2>About Flip</h2>
+            <p><strong>Vision:</strong></p>
+            <p>Flip is designed to provide an easy-to-use hand movement tracking software for reading eBooks or PDFs on devices equipped with a camera. While other hand detection software can be unreliable and frustrating, Flip aims to offer a solution that users can consistently trust. With Flip, users can "swipe" their hands in front of a connected camera, prompting the device to navigate accordingly. We offer a free, open-source Chrome extension for public use. Our project leverages Python with OpenCV and NumPy for hand movement tracking, and potentially JavaScript/PyScript for Chrome extension development.</p>
+            
+            <p><strong>Semester Goals:</strong></p>
+            <ul>
+                <li>Research and familiarize ourselves with Python's OpenCV and NumPy libraries.</li>
+                <li>Accurately track user hand movements, at minimum for basic gestures like swiping left or right.</li>
+                <li>Enable users to seamlessly flip through eBooks/PDFs on their devices.</li>
+                <li>Package our movement tracker capabilities into a Chrome Extension for easy access.</li>
+            </ul>
+
+            <p><strong>Contact Us:</strong></p>
+            <p>
+                Stuart Powers - <a href="mailto:powers2@rpi.edu">powers2@rpi.edu</a><br>
+                Cole Augusta - <a href="mailto:augusc2@rpi.edu">augusc2@rpi.edu</a><br>
+                Ansh Revankar - <a href="mailto:revana@rpi.edu">revana@rpi.edu</a>
+            </p>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 Flip. All rights reserved.</p>
+    </footer>
 </body>
+</html>

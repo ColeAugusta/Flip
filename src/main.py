@@ -12,6 +12,18 @@ import cv2
 def runFlip():
 
     cap = cv2.VideoCapture(0)
+
+    # Check if the camera is opened successfully
+    if not cap.isOpened():
+        print("Error: Could not open/find camera. Please ensure that a camera is connected and accessible.")
+        # Optionally, display an error message in the GUI
+        error_window = Tk()
+        error_window.title("Error")
+        Label(error_window, text="Could not open/find camera.\nPlease ensure that a camera is connected.", font=('Ubuntu', 14)).pack(pady=20)
+        Button(error_window, text="OK", command=error_window.destroy).pack(pady=10)
+        error_window.mainloop()
+        return
+    
     mpHands = mp.solutions.hands
     hands = mpHands.Hands(static_image_mode=False,
                         max_num_hands=2,
